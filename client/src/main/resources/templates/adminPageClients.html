@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page Clients</title>
+    <link rel="stylesheet" href="/adminPageClients.css">
+    <link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<header>
+    <div class="row">
+        <ul class="main-nav">
+            <li><a href="/user/adminPage">HOME</a></li>
+            <li><a href="/driver/adminPageEmployees">EMPLOYEES PAGE</a></li>
+            <li><a href="/route/adminPageRoute">ROUTE PAGE</a></li>
+            <li><a href="/bus/adminPageBus">BUS PAGE</a></li>
+            <li class="active"><a href="">CLIENTS PAGE</a></li>
+            <li><a href="/user/login">LOG OUT</a></li>
+        </ul>
+    </div>
+</header>
+<div class="box">
+    <div class="container">
+        <table class="table table-sm table-dark">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>CNP</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>UserID</th>
+                <th>No.Reservation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${clients.isEmpty()}">
+                <td colspan="8">no employees</td>
+            </tr>
+            <tr th:unless="${clients.isEmpty()}" th:each="client1 : ${clients}">
+                <td>[[${client1.id}]]</td>
+                <td>[[${client1.firstName}]]</td>
+                <td>[[${client1.lastName}]]</td>
+                <td>[[${client1.CNP}]]</td>
+                <td>[[${client1.address}]]</td>
+                <td>[[${client1.phone}]]</td>
+                <td>[[${client1.user.id}]]</td>
+                <td>[[${client1.noOfReservations}]]</td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary top-buffer" id ="saveBtn" data-toggle="modal" data-target="#saveModal">Create</button>
+        <button type="submit" class="btn btn-primary top-buffer" id ="editBtn" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button type="submit" class="btn btn-primary top-buffer" data-toggle="modal" data-target="#deleteModal">Delete</button>
+        <button type="submit" class="btn btn-primary top-buffer" data-toggle="modal" data-target="#genModal">Generate Report</button>
+    </div>
+    <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create client</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/client/save}" method="post">
+                        <div class="form-group">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required pattern="[A-Za-z]{}">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required pattern="[A-Za-z]{}">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="CNP">CNP:</label>
+                            <input type="text" class="form-control" name="CNP" id="CNP" placeholder="CNP" required pattern="[0-9]{13}" maxlength="13">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" required pattern="[0-9]{10}" maxlength="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="noOfReservations">No.Reservations:</label>
+                            <input type="text" class="form-control" name="noOfReservations" id="noOfReservations" placeholder="No.Reservations">
+                        </div>
+                        <div class="form-group">
+                            <label for="userID">UserID:</label>
+                            <input type="text" class="form-control" name="user.id" id="userID" placeholder="UserID">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save & Modify</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel2">Edit client</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/client/save}" method="post">
+                            <div class="form-group">
+                                <label for="clientID">ID:</label>
+                                <input type="text" class="form-control" name="id" id="clientID" placeholder="ClientID" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="firstNameEdit">First Name:</label>
+                                <input type="text" class="form-control" id="firstNameEdit" name="firstName" placeholder="First Name" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="lastNameEdit">Last Name:</label>
+                                <input type="text" class="form-control" id="lastNameEdit" name="lastName" placeholder="Last Name" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="CNPEdit">CNP:</label>
+                                <input type="text" class="form-control" name="CNP" id="CNPEdit" placeholder="CNP" required pattern="[0-9]{13}" maxlength="13">
+                            </div>
+                            <div class="form-group">
+                                <label for="addressEdit">Address:</label>
+                                <input type="text" class="form-control" id="addressEdit" name="address" placeholder="Address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneEdit">Phone:</label>
+                                <input type="text" class="form-control" name="phone" id="phoneEdit" placeholder="Phone" required pattern="[0-9]{10}" maxlength="10">
+                            </div>
+                            <div class="form-group">
+                                <label for="noOfReservationsEdit">No.Reservations:</label>
+                                <input type="text" class="form-control" name="noOfReservations" id="noOfReservationsEdit" placeholder="No.Reservations" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userIDEdit">UserID:</label>
+                                <input type="text" class="form-control" name="user.id" id="userIDEdit" placeholder="UserID" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save & Modify</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Delete client</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/client/delete}" method="post">
+                        <div class="form-group">
+                            <label for="clientIDDelete">ID:</label>
+                            <input type="text" class="form-control" name="id" id="clientIDDelete" placeholder="ClientID" required>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="genModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel4">Generate Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/user/getReport}" method="get">
+                        <div class="form-group">
+                            <label for="genReport">Report Type:</label>
+                            <select id="genReport" name="str" class="form-control">
+                                <option value="CSV">CSV</option>
+                                <option value="TXT">TXT</option>
+                            </select>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Generate</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container1">
+        <table class="table table-sm table-dark">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${users.isEmpty()}">
+                <td colspan="4">no users</td>
+            </tr>
+            <tr th:unless="${users.isEmpty()}" th:each="user : ${users}">
+                <td>[[${user.id}]]</td>
+                <td>[[${user.username}]]</td>
+                <td>[[${user.password}]]</td>
+                <td>[[${user.role}]]</td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary top-buffer"  data-toggle="modal" data-target="#saveModal1">Create</button>
+        <button type="submit" class="btn btn-primary top-buffer"  data-toggle="modal" data-target="#editModal1">Edit</button>
+        <button type="submit" class="btn btn-primary top-buffer" data-toggle="modal" data-target="#deleteModal1">Delete</button>
+
+    </div>
+    <div class="modal fade" id="saveModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelU" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelU">Create user</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/user/save}" method="post">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="text" class="form-control" id="password" name="password" placeholder="Password">
+
+                        </div>
+                        <label for="role">Role:</label>
+                        <select id="role" name="role" class="form-control">
+                            <option th:each="role : ${T(ClientBusManagement.enumeration.UserRole).values()}"
+                                    th:value="${role}" th:text="${role}"
+                                    th:selected="${role == user.role}"></option>
+                        </select>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save & Modify</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2U">Edit user</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/user/save}" method="post">
+                        <div class="form-group">
+                            <label for="userIDEdit1">ID:</label>
+                            <input type="text" class="form-control" name="id" id="userIDEdit1" placeholder="userID">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="usernameEdit">Username:</label>
+                            <input type="text" class="form-control" id="usernameEdit" name="username" placeholder="Username">
+
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordEdit">Password:</label>
+                            <input type="text" class="form-control" id="passwordEdit" name="password" placeholder="Password">
+
+                        </div>
+                        <label for="roleEdit">Role:</label>
+                        <select id="roleEdit" name="role" class="form-control">
+                            <option th:each="role : ${T(ClientBusManagement.enumeration.UserRole).values()}"
+                                    th:value="${role}" th:text="${role}"
+                                    th:selected="${role == user.role}"></option>
+                        </select>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save & Modify</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3U">Delete user</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/user/delete}" method="post">
+                        <div class="form-group">
+                            <label for="userIDDelete">ID:</label>
+                            <input type="text" class="form-control" name="id" id="userIDDelete" placeholder="UserID">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="/webjars/moment/min/moment.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav{
+    float: right;
+    list-style: none;
+    margin-top: 20px;
+    margin-right: 101px
+}
+
+.main-nav li{
+    display: inline-block;
+}
+
+.main-nav li a{
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+}
+
+.main-nav li.active a{
+    border: 1px solid white;
+}
+
+.main-nav li a:hover{
+    border: 1px solid white;
+}
+
+body{
+    font-family: monospace;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(client.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.row{
+    float:right;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.container{
+    width: 60%;
+    height: 20%;
+    margin-left:20%;
+}
+
+.container1{
+    width: 60%;
+    height: 20%;
+    margin-left:20%;
+}
+
+.container2{
+    width: 60%;
+    height: 20%;
+    margin-left:20%;
+    padding-top:10%;
+}
+
+.searchBus{
+    width: 250px;
+    height: 200px;
+    padding-top: 8%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.searchBus input{
+    width: 100%;
+    margin-bottom: 20px;}
+
+.searchBus p{
+                color: white;
+               margin: 0;
+               padding: 0;
+               font-weight: bold;
+           }
+
+.searchBus input[type="text"]{
+               border: none;
+               border-bottom: 1px solid #fff;
+               background: transparent;
+               outline: none;
+               height: 40px;
+               color: #fff;
+               font-size: 16px;
+           }
+.searchBus input[type="submit"]{
+  border: none;
+    outline: none;
+    height: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.searchSeat{
+    width: 250px;
+    height: 200px;
+    padding-top: 7%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.searchSeat input{
+    width: 100%;
+    margin-bottom: 20px;}
+
+.searchSeat p{
+                color: white;
+               margin: 0;
+               padding: 0;
+               font-weight: bold;
+           }
+
+.searchSeat input[type="text"]{
+               border: none;
+               border-bottom: 1px solid #fff;
+               background: transparent;
+               outline: none;
+               height: 40px;
+               color: #fff;
+               font-size: 16px;
+           }
+.searchSeat input[type="submit"]{
+  border: none;
+    outline: none;
+    height: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.container input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.addTicket{
+    width: 250px;
+    height: 200px;
+    padding-top: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.addTicket input{
+    width: 100%;
+    margin-bottom: 20px;}
+
+.addTicket p{
+                color: white;
+               margin: 0;
+               padding: 0;
+               font-weight: bold;
+           }
+
+.addTicket input[type="text"]{
+               border: none;
+               border-bottom: 1px solid #fff;
+               background: transparent;
+               outline: none;
+               height: 40px;
+               color: #fff;
+               font-size: 16px;
+           }
+.addTicket input[type="submit"]{
+  border: none;
+    outline: none;
+    height: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.getTotalPrice{
+       width: 250px;
+       height: 200px;
+        margin-top: -15%;
+       padding-left: 85%;
+       padding-right: 3%;
+}
+
+.getTotalPrice input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.getTotalPrice label{
+    border: none;
+        outline: none;
+        height: 30px;
+        background: black;
+        color: white;
+        font-size: 18px;
+        border-radius: 20px;
+}
+
+
+.deleteTicket{
+       width: 250px;
+       height: 200px;
+       padding-left: 3%;
+       padding-right: 3%;
+}
+
+.deleteTicket input{
+    width: 100%;
+    margin-bottom: 20px;}
+
+.deleteTicket p{
+                color: white;
+               margin: 0;
+               padding: 0;
+               font-weight: bold;
+           }
+
+.deleteTicket input[type="text"]{
+               border: none;
+               border-bottom: 1px solid #fff;
+               background: transparent;
+               outline: none;
+               height: 40px;
+               color: #fff;
+               font-size: 16px;
+}
+
+.deleteTicket input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.deleteTicket label{
+    border: none;
+        outline: none;
+        height: 30px;
+        background: black;
+        color: white;
+        font-size: 18px;
+        border-radius: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

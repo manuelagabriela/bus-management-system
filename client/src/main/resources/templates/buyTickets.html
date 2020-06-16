@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Client Form</title>
+        <link rel="stylesheet" href="/buyTickets.css">
+        <link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+        <script>
+        (function() {
+            $('.mdb-select').materialSelect();
+            });
+        </script>
+    </head>
+    
+<body>
+    <header>
+       <div class="row">
+        <ul class="main-nav">
+            <li><a href="/user/clientPage">HOME</a></li>
+            <li lass="active"><a href="">BUY TICKETS</a></li>
+            <li><a href="/user/myAccount">MY ACCOUNT</a></li>
+            <li><a href="/user/clientPageContact">CONTACT US</a></li>
+            <li><a href="/user/login">LOG OUT</a></li>
+        </ul> 
+       </div>     
+    </header>
+
+    <form th:action="@{/route/findBuses}" method="post">
+        <div class="searchBus">
+        <p>Source</p>
+        <input type="text" placeholder="Enter Source" name="source" id="source">
+        <p>Destination</p>
+        <input type="text" placeholder="Enter Destination" name="destination" id="destination">
+        <input type="submit" name="" value="Search">
+        </div>
+
+        <div class="container">
+            <table class="table table-sm table-dark">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Firm</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${buses.isEmpty()}">
+                    <td colspan="5">no buses</td>
+                </tr>
+                <tr th:unless="${buses.isEmpty()}" th:each="bus : ${buses}">
+                    <td>[[${bus.id}]]</td>
+                    <td>[[${bus.date}]]</td>
+                    <td>[[${bus.firm}]]</td>
+                    <td>[[${bus.route.price}]]</td>
+                    <td>
+                        <select class='form-control' name="selectedSeat" id='selectSeat'>
+                            <option hidden selected="true" disabled="disabled">Alege locul</option>
+                            <option th:each="seat : ${bus.seatDTOList}"
+                                    th:value="${seat.id}" th:text="${seat.number}"></option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+                <input type="submit" name="" value="Add Ticket" formaction="/route/addTicket" formmethod="post">
+            </table>
+
+            <div class="container2">
+                <table class="table table-sm table-dark">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>SeatID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:if="${tickets.isEmpty()}">
+                        <td colspan="2">no tickets</td>
+                    </tr>
+                    <tr th:unless="${tickets.isEmpty()}" th:each="ticket : ${tickets}">
+                        <td>[[${ticket.id}]]</td>
+                        <td>[[${ticket.seat.id}]]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+
+    <form th:action="@{/route/deleteTicket}" method="post">
+        <div class="deleteTicket">
+            <p>TicketID</p>
+            <input type="text" placeholder="Enter TicketID" name="id" id="ticketID">
+            <input type="submit" name="" value="Delete Ticket">
+        </div>
+    </form>
+
+    <form th:action="@{/route/getTotalPrice}" method="post">
+        <div class="getTotalPrice">
+            <input type="submit" name="" value="GetTotalPrice">
+            <label th:text="${totalPrice}"></label>
+        </div>
+    </form>
+</body>
+    <script type="text/javascript">
+        $(function () {
+            $('.select-from-form').selectpicker();
+         });
+         $(function () {
+            $('.select-to-form').selectpicker();
+         });
+    </script>
+</html>

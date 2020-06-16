@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>Register Form</title>
+        <link rel="stylesheet" href="/register.css">
+    </head>
+    
+<div class="register-box">
+    <h1>Register</h1>
+    <form th:action="@{/user/register}" method="post">
+        <input type="text" placeholder="First Name" name="firstName" value="" required pattern="[A-Za-z]{}">
+        <input type="text" placeholder="Last Name" name="lastName" value="" required pattern="[A-Za-z]{}">
+        <input type="text" placeholder="CNP" name="CNP" value="" required pattern="[0-9]{13}" maxlength="13">
+        <input type="text" placeholder="Address" name="address" value="" required>
+        <input type="text" placeholder="Phone" name="phone" value="" required pattern="[0-9]{10}" maxlength="10">
+        <input type="text" placeholder="Enter Username" name="username" value="" required>
+        <input type="password" placeholder="Enter Password" name="password" value="" required>
+        <input type="submit" name="" value="Register">
+        <a href="/user/login">Already have an account?</a><br>
+    </form>
+</div>
+</html>

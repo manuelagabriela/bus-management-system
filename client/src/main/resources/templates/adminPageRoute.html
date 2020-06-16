@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page Routes</title>
+    <link rel="stylesheet" href="/adminPageRoute.css">
+    <link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="row">
+    <ul class="main-nav">
+        <li><a href="/user/adminPage">HOME</a></li>
+        <li><a href="/driver/adminPageEmployees">EMPLOYEES PAGE</a></li>
+        <li class="active"><a href="">ROUTE PAGE</a></li>
+        <li><a href="/bus/adminPageBus">BUS PAGE</a></li>
+        <li><a href="/user/adminPageClients">CLIENTS PAGE</a></li>
+        <li><a href="/user/login">LOG OUT</a></li>
+    </ul>
+</div>
+</header>
+<div class="container">
+    <table class="table table-sm table-dark">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${routes.isEmpty()}">
+            <td colspan="4">no routes</td>
+        </tr>
+        <tr th:unless="${routes.isEmpty()}" th:each="route : ${routes}">
+            <td>[[${route.id}]]</td>
+            <td>[[${route.source}]]</td>
+            <td>[[${route.destination}]]</td>
+            <td>[[${route.price}]]</td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary top-buffer" id ="saveBtn" data-toggle="modal" data-target="#saveModal">Create</button>
+    <button type="submit" class="btn btn-primary top-buffer" id ="editBtn" data-toggle="modal" data-target="#editModal">Edit</button>
+    <button type="submit" class="btn btn-primary top-buffer" data-toggle="modal" data-target="#deleteModal">Delete</button>
+</div>
+<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create route</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/route/save}" method="post">
+                    <div class="form-group">
+                        <label for="source">Source:</label>
+                        <input type="text" class="form-control" id="source" name="source" placeholder="Source" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination:</label>
+                        <input type="text" class="form-control" id="destination" name="destination" placeholder="Destination" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="text" class="form-control" name="price" id="price" placeholder="Price" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save & Modify</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Edit route</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/route/save}" method="post">
+                    <div class="form-group">
+                        <label for="routeID">ID:</label>
+                        <input type="text" class="form-control" name="id" id="routeID" placeholder="RouteID" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="sourceEdit">Source:</label>
+                        <input type="text" class="form-control" id="sourceEdit" name="source" placeholder="Source" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="destinationEdit">Destination:</label>
+                        <input type="text" class="form-control" id="destinationEdit" name="destination" placeholder="Destination" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="priceEdit">Price:</label>
+                        <input type="text" class="form-control" name="price" id="priceEdit" placeholder="Price" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save & Modify</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Delete route</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/route/delete}" method="post">
+                    <div class="form-group">
+                        <label for="routeIDDelete">ID:</label>
+                        <input type="text" class="form-control" name="id" id="routeIDDelete" placeholder="RouteID" required>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="/webjars/moment/min/moment.min.js"></script>
+</body>
+</html>

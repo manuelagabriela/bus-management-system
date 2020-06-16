@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>Login Form</title>
+        <link rel="stylesheet" href="/login.css">
+    </head>
+    
+<div class="login-box">
+    <h1>Login</h1>
+    <form th:action="@{/user/login}" method="post">
+        <p>Username</p>
+        <input type="text" placeholder="Enter Username" name="username" id="username" required>
+        <p>Password</p>
+        <input type="password" placeholder="Enter Password" name="password" id="password" required>
+        <input type="submit" name="" value="Login">
+        <a href="/user/register">Don't have an account yet?</a><br>
+    </form>
+</div>
+
+</html>

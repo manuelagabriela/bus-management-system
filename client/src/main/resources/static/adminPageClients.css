@@ -1,0 +1,106 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.row{
+    float: right;
+    max-width: 1200px;
+}
+
+.row .main-nav{
+    list-style: none;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.main-nav li{
+    display: inline-block;
+}
+
+.main-nav li a{
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 5px 20px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+}
+
+.main-nav li.active a{
+    border: 1px solid white;
+}
+
+.main-nav li a:hover{
+    border: 1px solid white;
+}
+
+body{
+    font-family: monospace;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(admin.png);
+    height: 105vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.getReport{
+    width: 250px;
+    height: 200px;
+    padding-top: 10%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.getReport input{
+    width: 100%;
+    margin-bottom: 20px;}
+
+.getReport p{
+                color: white;
+               margin: 0;
+               padding: 0;
+               font-weight: bold;
+           }
+.getReport input[type="text"]{
+               border: none;
+               border-bottom: 1px solid #fff;
+               background: transparent;
+               outline: none;
+               height: 40px;
+               color: #fff;
+               font-size: 16px;
+           }
+.getReport input[type="button"]{
+  border: none;
+    outline: none;
+    height: 30px;
+    background: black;
+    color: white;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.box .container{
+    width: 70%;
+    height: 20%;
+}
+.container .btn{
+    background-color:black;
+    border-color:gray;
+}
+
+.box .container1{
+    width: 60%;
+    height: 20%;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+.container1 .btn{
+    background-color:black;
+    border-color:gray;
+}
+
+.modal-footer .btn{
+    background-color:black;
+    border-color:gray;
+}

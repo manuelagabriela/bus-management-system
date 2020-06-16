@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>My Account Form</title>
+    <link rel="stylesheet" href="/myAccount.css">
+</head>
+<body>
+<div class="myAccount-box">
+    <h1>My Account</h1>
+    <form th:action="@{/user/myAccount}" method="post">
+        <input type="text" th:placeholder="${firstName}" name="firstName" value="" required pattern="[A-Za-z]{}">
+        <input type="text" th:placeholder="${lastName}" name="lastName" value="" required pattern="[A-Za-z]{}">
+        <input type="text" th:placeholder="${CNP}" name="CNP" value="" required pattern="[0-9]{13}" maxlength="13">
+        <input type="text" th:placeholder="${address}" name="address" value="" required>
+        <input type="text" th:placeholder="${phone}" name="phone" value="" required pattern="[0-9]{10}" maxlength="10">
+        <input type="text" th:placeholder="${noOfReservations}" name="noOfReservations" value="" readonly>
+        <input type="text" th:placeholder="${username}" name="username" value="" readonly>
+        <input type="text" th:placeholder="${password}" name="password" value="" readonly>
+        <input type="submit" name="" value="Save">
+    </form>
+</div>
+</body>
+</html>
